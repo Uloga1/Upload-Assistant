@@ -1,11 +1,14 @@
-name: Build and Push Docker Image
+name: Build and Push to Docker Hub
 
 on:
   push:
-    branches: [ "main" ] # De workflow start zodra je iets naar de main branch pusht
+    branches:
+      - "main"  # Verander dit als je een andere branch gebruikt
+    tags:
+      - "v*.*.*" # Activeert ook bij release tags zoals v1.0.1
 
 jobs:
-  build-and-push:
+  docker:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -23,7 +26,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: .
           push: true
-          # VERVANG 'jouwgebruikersnaam' EN 'jouw-repo-naam' HIERONDER:
-          tags: Uloga1/Upload-Assistant:latest
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/upload-assistant:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/upload-assistant:${{ github.sha }}
