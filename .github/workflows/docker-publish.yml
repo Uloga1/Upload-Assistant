@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - "main"  # Verander dit als je een andere branch gebruikt
+    workflow_dispatch:
     tags:
       - "v*.*.*" # Activeert ook bij release tags zoals v1.0.1
 
