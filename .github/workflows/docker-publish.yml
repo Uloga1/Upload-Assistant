@@ -29,5 +29,5 @@ jobs:
           push: true
           # BELANGRIJK: Pas hieronder je gebruikersnaam en de gewenste image-naam aan
           tags: |
-            ul00g/upload-assistant:latest
-            ul00g/upload-assistan:${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/upload-assistant-audionut:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/upload-assistant-audionut:${{ github.sha }}
