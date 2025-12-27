@@ -2,14 +2,12 @@ name: Build and Push to Docker Hub
 
 on:
   push:
-    branches:
-      - "main"  # Verander dit als je een andere branch gebruikt
-    workflow_dispatch:
-    tags:
-      - "v*.*.*" # Activeert ook bij release tags zoals v1.0.1
+    branches: [ "main" ]
+  # Hiermee krijg je de handmatige "Run workflow" knop in GitHub Actions
+  workflow_dispatch:
 
 jobs:
-  docker:
+  build-and-push:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -27,7 +25,9 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
+          context: .
           push: true
+          # BELANGRIJK: Pas hieronder je gebruikersnaam en de gewenste image-naam aan
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/upload-assistant:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/upload-assistant:${{ github.sha }}
+            ul00g/upload-assistant:latest
+            ul00g/upload-assistan:${{ github.sha }}
