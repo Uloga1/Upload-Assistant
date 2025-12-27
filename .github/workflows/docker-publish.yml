@@ -26,4 +26,4 @@ jobs:
           context: .
           push: true
           # VERVANG 'jouwgebruikersnaam' EN 'jouw-repo-naam' HIERONDER:
-          tags: jouwgebruikersnaam/jouw-repo-naam:latest
+          tags: ULoga1/Upload-Assistant:latest
